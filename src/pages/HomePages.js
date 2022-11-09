@@ -32,7 +32,7 @@ const HomePages = () => {
       setLogin(false)
     }
     dispatch(fetchList());
-  }, [dispatch]);
+  }, [dispatch, Login]);
 
   return (
     <div style={{}}>

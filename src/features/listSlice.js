@@ -53,13 +53,14 @@ const listSlice = createSlice({
         if (temp === undefined) {
           newItem.quantity = 1;
           // console.log(newItem);
-          state.cart.push(newItem);
+          
           if (
             state.list[indexStock].stock < 0 ||
             state.list[indexStock].stock === 0
           ) {
             alert('Stock sudah habis');
           } else {
+            state.cart.push(newItem);
             state.totalPrice = state.totalPrice + newItem.price;
             state.list[indexStock].stock -= 1;
           }
