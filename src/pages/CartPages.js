@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import Table from 'react-bootstrap/Table';
-import Button from 'react-bootstrap/Button';
-import { cartAdd1, cartRemove1, checkOut } from '../features/listSlice';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { cartAdd1, cartRemove1, checkOut } from "../features/listSlice";
+import Button from "../components/Atoms/Button";
 
 const CartPages = () => {
   const data = useSelector((state) => state.list);
@@ -14,7 +13,7 @@ const CartPages = () => {
     if (Login) {
       dispatch(cartAdd1(data));
     } else {
-      alert('Login dulu bro');
+      alert("Login dulu bro");
     }
   };
 
@@ -22,7 +21,7 @@ const CartPages = () => {
     if (Login) {
       dispatch(cartRemove1(data));
     } else {
-      alert('Login dulu bro');
+      alert("Login dulu bro");
     }
   };
 
@@ -30,12 +29,12 @@ const CartPages = () => {
     if (Login) {
       dispatch(checkOut(data));
     } else {
-      alert('Login dulu bro');
+      alert("Login dulu bro");
     }
   };
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem("token")) {
       setLogin(true);
     } else {
       setLogin(false);
@@ -44,7 +43,7 @@ const CartPages = () => {
 
   return (
     <>
-      <Table striped bordered hover>
+      <table striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
@@ -62,7 +61,7 @@ const CartPages = () => {
                 <td>{data.title}</td>
                 <td>{data.quantity}</td>
                 <td>
-                  <Button onClick={() => handleAdd(data)}>+</Button>{' '}
+                  <Button onClick={() => handleAdd(data)}>+</Button>{" "}
                   <span></span>
                   <Button onClick={() => handleRemove(data)}>-</Button>
                 </td>
@@ -70,7 +69,7 @@ const CartPages = () => {
               </tr>
             ))}
         </tbody>
-      </Table>
+      </table>
       <p>Total: ${data.totalPrice.toFixed(2)}</p>
       <Button onClick={() => handleCheckOut(data.cart)}>checkOut</Button>
     </>
