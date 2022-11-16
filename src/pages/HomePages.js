@@ -1,74 +1,40 @@
-import React, { useState } from 'react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchList, cartAdded } from '../features/listSlice';
-
-
-import Card from 'react-bootstrap/Card';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
-
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import CardProduct from "../components/organisms/CardProduct";
+import { fetchList, cartAdded } from "../features/listSlice";
 
 const HomePages = () => {
+  // const list = useSelector((state) => state.list.list);
   const list = useSelector((state) => state.list.list);
   const dispatch = useDispatch();
-  const [Login, setLogin] = useState(false)
-
+  const [Login, setLogin] = useState(false);
 
   const addCart = (data) => {
-    if(Login){
+    if (Login) {
       dispatch(cartAdded(data));
-    }else{
-      alert("Login dulu bro")
+    } else {
+      alert("Login dulu bro");
     }
   };
 
-
   useEffect(() => {
-    if(localStorage.getItem("token")){
-      setLogin(true)
-    }else{
-      setLogin(false)
+    if (localStorage.getItem("token")) {
+      setLogin(true);
+    } else {
+      setLogin(false);
     }
     dispatch(fetchList());
   }, [dispatch, Login]);
 
   return (
-    <div style={{}}>
-      <Row xs={1} md={6} className='g-4'>
-        {list !== null &&
-          list.map((data, index) => (
-            <Col key={data.id}>
-              <Card style={{ width: '18rem', height: '42rem', margin: '25px' }}>
-                <Card.Img
-                  variant='top'
-                  src={data.image}
-                  style={{ width: '17rem', height: '20rem' }}
-                />
-                <Card.Body>
-                  <Card.Title>{data.title}</Card.Title>
-                  <Card.Text>{data.category}</Card.Text>
-                  <Card.Text>
-                    {data.description.substring(0, 100)}. . . .
-                  </Card.Text>
-                  <Card.Text>Price : ${data.price}</Card.Text>
-                  <Card.Text>
-                    {data.rating.rate} | {data.rating.count}{' '}
-                  </Card.Text>
-                  <Button variant='primary'>Detail</Button>
-                  <Button
-                    onClick={() => addCart(data)}
-                    variant='success'
-                    style={{ marginLeft: '20px' }}
-                  >
-                    Add to Cart
-                  </Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-      </Row>
+    <div>
+      <h1 className="text-4xl text-center mb-10">Products</h1>
+      <div className="w-4/5 mx-auto mb-10">
+        <div className="grid xl:grid-cols-5 lg:grid-cols-3 gap-10 sm:grid-cols-2">
+          <CardProduct list={list} />
+        </div>
+      </div>
     </div>
   );
 };

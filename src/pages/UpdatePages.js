@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import Table from 'react-bootstrap/Table';
-import { useDispatch, useSelector } from 'react-redux';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { updateStock } from '../features/listSlice';
-import { fetchList } from '../features/listSlice';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Button from "../components/Atoms/Button";
+import { updateStock } from "../features/listSlice";
+import { fetchList } from "../features/listSlice";
 
 const UpdatePages = () => {
   const dispatch = useDispatch();
@@ -27,7 +25,7 @@ const UpdatePages = () => {
 
   return (
     <>
-      <Table striped bordered hover>
+      <table striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
@@ -44,11 +42,11 @@ const UpdatePages = () => {
                 <td>{data.title}</td>
                 <td>{data.stock}</td>
                 <td>
-                  <Form.Control
-                    type='number'
-                    id='stock'
+                  <form
+                    type="number"
+                    id="stock"
                     onChange={(e) => handleInput(e)}
-                    aria-describedby='passwordHelpBlock'
+                    aria-describedby="passwordHelpBlock"
                   />
                 </td>
                 <td>
@@ -59,7 +57,7 @@ const UpdatePages = () => {
               </tr>
             ))}
         </tbody>
-      </Table>
+      </table>
     </>
   );
 };

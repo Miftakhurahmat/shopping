@@ -1,17 +1,13 @@
-import React, { useEffect} from 'react'
-import { useSelector } from 'react-redux'
-import { Table } from 'react-bootstrap'
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const RekapPages = () => {
-
   const data = useSelector((state) => state.list);
 
-  useEffect(()=>{
-    
-  },[])
+  useEffect(() => {}, []);
   return (
     <>
-      <Table striped bordered hover>
+      <table striped bordered hover>
         <thead>
           <tr>
             <th>#</th>
@@ -31,10 +27,10 @@ const RekapPages = () => {
               </tr>
             ))}
         </tbody>
-      </Table>
+      </table>
       <p>Total: ${data.totalRevenue.toFixed(2)}</p>
     </>
-  )
-}
+  );
+};
 
-export default RekapPages
+export default RekapPages;
